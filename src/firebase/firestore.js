@@ -25,11 +25,19 @@ export const addManager = async (data) => {
 //delete manager
 export const deleteManager = async (id) => {
     await deleteDoc(doc(db, "managers", id));
+    return `Deleted ${id} document`
 }
 //update manager
+
 export const updateManager = async (data, id) => {
+    const docRef = await setDoc(doc(db, 'managers', id), { ...data });
+    return "Document update with ID: " + id;
+}
+
+//register email
+export const registerEmailToManager = async (data, id) => {
     await updateDoc(doc(db, "managers", id), { ...data });
-    console.log("Document updated with ID: ", id);
+    return "Document update with ID: " + id;
 }
 //get manager list
 export const getAllManagers = async () => {

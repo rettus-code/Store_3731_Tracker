@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { updateManager } from '../../../firebase/firestore'
+import { registerEmailToManager } from '../../../firebase/firestore'
 
 const ManagersListToRegisterEmail = ({ managers, email, manager }) => {
     const [selectedValue, setSelectedValue] = useState(managers[0]?.name);
@@ -11,7 +11,8 @@ const ManagersListToRegisterEmail = ({ managers, email, manager }) => {
             role: managers.filter((manager) => manager?.name === selectedValue)[0]?.role
         }
         manager({ id: id, ...temp })
-        await updateManager(temp, id);
+        const verify = await registerEmailToManager(temp, id);
+        console.log(verify);
     }
     const handleChange = (event) => {
         setSelectedValue(event.target.value);
