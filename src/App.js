@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 
