@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/authContext'
 import { getAllManagers } from '../../firebase/firestore'
 import ManagersListToRegisterEmail from "./managerslisttoregistermail"
 import ManagementAdmin from "./managementadmin";
-
+import Menu from "./menu"
 const Home = () => {
     const [managersList, setManagersList] = useState([]);
     const [currentManager, setCurrentManager] = useState({});
@@ -40,7 +40,7 @@ const Home = () => {
             <h2>Hello {currentManager.name ? currentManager.name : currentUser.email}, you are now logged in.</h2>
             <p className='text-lg font-normal pt-10'>{ currentManager.email ? menuString : registerEmail}</p>
             {
-                currentManager.email ? "welcome" : <ManagersListToRegisterEmail managers={ managersList } email={ currentUser.email }manager={ setCurrentManager } />
+                currentManager.email ? <Menu /> : <ManagersListToRegisterEmail managers={ managersList } email={ currentUser.email }manager={ setCurrentManager } />
             }
             <br></br>
             {
