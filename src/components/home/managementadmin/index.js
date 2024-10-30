@@ -46,8 +46,9 @@ const ManagementAdmin = () => {
             role: role
         }
         //send to firestore db
-        const validate = await addManager(temp);
-        console.log(validate);
+        await addManager(temp);
+        let list = await getAllManagers();
+        setManagersList(list.sort((a,b) => a?.name.localeCompare(b?.name)))
         //reset form
         setName('');
         setEmail('');
@@ -126,8 +127,8 @@ const ManagementAdmin = () => {
                         <Row>
                             <Col xs={3} md={4} className='text-right'>Role:</Col>
                             <Col xs={9} md={8}>
-                                <select style={inputStyle} onChange={handleRoleChange}>
-                                    { roles.map((r) => (<option key={r} value={role}>{role}</option>))}
+                                <select style={inputStyle} onChange={handleRoleChange} value={role}>
+                                    { roles.map((r) => (<option key={r} value={r}>{r}</option>))}
                                 </select>
                             </Col>
                         </Row>
@@ -163,8 +164,8 @@ const ManagementAdmin = () => {
                             <Row>
                                 <Col xs={3} md={4} className='text-right'>Role:</Col>
                                 <Col xs={9} md={8}>
-                                    <select style={inputStyle} onChange={handleRoleToEditChange}>
-                                        { roles.map((r) => (<option key={r} value={roleToEdit}>{roleToEdit}</option>))}
+                                    <select style={inputStyle} onChange={handleRoleToEditChange} value={roleToEdit}>
+                                        { roles.map((r) => (<option key={r} value={r}>{r}</option>))}
                                     </select>
                                 </Col>
                             </Row>
