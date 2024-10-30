@@ -57,7 +57,7 @@ export const getAllManagers = async () => {
 export const addCrewMember = async (data) => {
     const docRef = await addDoc(collection(db, "crew"), {
         name: data.name, //required
-        minor: data.minor //required
+        minorStatus: data.minorStatus //required
     })
     return "Document written with ID: " + docRef.id;
 }
@@ -72,18 +72,19 @@ export const updateCrewMember = async (data, id) => {
     return "Document update with ID: " + id;
 }
 //get crew list
-export const getAllCrewMember = async () => {
-    let managersList = [];
+export const getAllCrewMembers = async () => {
+    let crewList = [];
     const querySnapshot = await getDocs(collection(db, "crew"));
     querySnapshot.forEach((doc) => {
         let temp = {
             id: doc.id,
             name: doc.data().name,
-            minor: doc.data().minor,
+            minorStatus: doc.data().minorStatus,
         }
-        managersList.push(temp);
+        console.log(temp)
+        crewList.push(temp);
     })
-    return managersList;
+    return crewList;
 }
 //add floor plan
 

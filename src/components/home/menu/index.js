@@ -4,12 +4,26 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import Modal from './modal';
+
+
 
 const Menu = () => {
+    const [modal, setModal] = useState(false);
+    const [page, setPage] = useState('')
 
-
+    const popupStyle = {
+        width: '500px',
+    }
+    const popUp = (e) => {
+        setModal(!modal);
+        setPage(e.target.value);
+        console.log(e.target.value)
+    }
     return (<div>
+        
         <Card className='text-lg font-normal pt-14' style={{width: '96%', 'maxWidth': '800px', margin: 'auto'}}>
+            
             <Card.Title>Action Menu</Card.Title>
             <Card.Body>
                 <Container>
@@ -40,7 +54,8 @@ const Menu = () => {
                     <Row style={{ marginTop: '15px' }}>
                         <Card.Text>Admin</Card.Text>
                         <Col>
-                            <Button>Edit Crew List</Button>
+                        <Button onClick={ popUp } value="editCrew">Edit Crew List</Button>
+                            
                         </Col>
                         <Col>
                             <Button>Crew Stats</Button>
@@ -51,6 +66,7 @@ const Menu = () => {
                     </Row>
                 </Container>
             </Card.Body>
+            { modal ? <Modal closePage={ setModal } page={ page } /> : '' }
         </Card>
     </div>)
 }
