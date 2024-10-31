@@ -22,7 +22,6 @@ const Home = () => {
         if(managersList.length > 0) {
             managersList.forEach((manager) => {
                 if(currentUser.email === manager.email){
-                    console.log(manager);
                     setCurrentManager(manager);
                 }
             })

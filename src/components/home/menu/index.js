@@ -18,11 +18,10 @@ const Menu = () => {
     const popUp = (e) => {
         setModal(!modal);
         setPage(e.target.value);
-        console.log(e.target.value)
     }
     return (<div>
         
-        <Card className='text-lg font-normal pt-14' style={{width: '96%', 'maxWidth': '800px', margin: 'auto'}}>
+        <Card className='text-lg font-normal pt-14' style={{width: '100%', 'maxWidth': '800px', margin: 'auto'}}>
             
             <Card.Title>Action Menu</Card.Title>
             <Card.Body>
@@ -30,7 +29,7 @@ const Menu = () => {
                     <Row>
                         <Card.Text>Floor Plans</Card.Text>
                         <Col>
-                            <Button>Create Floor Plan</Button>
+                            <Button onClick={ popUp } value="createFloorPlan">Create Floor Plan</Button>
                         </Col>
                         <Col>
                             <Button>Edit Floor Plan</Button>

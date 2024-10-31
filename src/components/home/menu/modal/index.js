@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import React, { useEffect, useState } from 'react';
+import CreateFloorPlan from '../createfloorplan';
 import CrewEdit from '../editcrew';
 
 const Modal = ({closePage, page}) => {
@@ -15,8 +11,8 @@ const Modal = ({closePage, page}) => {
         overflow: 'auto'
     }
     return (<div style={modalStyle}>
-        
-        <CrewEdit closePage={closePage}/>
+        { page === 'createFloorPlan' && <CreateFloorPlan closePage={closePage}/>}
+        { page === 'editCrew' && <CrewEdit closePage={closePage}/>}
     </div>)
 }
 

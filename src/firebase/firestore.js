@@ -81,19 +81,41 @@ export const getAllCrewMembers = async () => {
             name: doc.data().name,
             minorStatus: doc.data().minorStatus,
         }
-        console.log(temp)
         crewList.push(temp);
     })
     return crewList;
 }
+//get crew and manager list
+export const getCrewAndManagers = async () => {
+    const crewList = await getAllCrewMembers();
+    const managerList = await getAllManagers();
+    let fullList = [];
+    crewList.forEach((crew) => fullList.push(crew.name));
+    managerList.forEach((manager) => fullList.push(manager.name))
+    return fullList;
+}
 //add floor plan
-
+export const addFloorPLan = async (data, day, time) => {
+    const docRef = await setDoc(doc(db, 'floorplans', day), { [time]: {...data}});
+    return "Document created with ID: " + day;
+}
 //update floor plan
 
 //delete floor plan
 
 //get floor plans by date
-
+export const getFloorPlansForDate = async (date) => {
+    const docRef = doc(db, 'floorplans', date);
+    const docSnap = await getDoc(docRef);
+    if(docSnap.exists) {
+        return {
+            date : docSnap.id,
+            dailyPlans : docSnap.data()
+        }
+    } else {
+        return 'No plans for that day'
+    }
+}
 //get floor plans by date span
 
 //add oepe form
